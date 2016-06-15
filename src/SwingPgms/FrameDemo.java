@@ -9,6 +9,7 @@ public class FrameDemo {
 		jf.setSize(400,400);
 		jf.setTitle("Frame");
 		jf.setVisible(true);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
