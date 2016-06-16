@@ -1,0 +1,74 @@
+package SwingPgms;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.plaf.*;
+
+public class LookFeel extends JFrame implements ItemListener {
+	
+	JButton b;
+	JCheckBox cb;
+	JTextField t;
+	JRadioButton r1,r2,r3;
+	ButtonGroup bg;
+	Container c;
+	
+	LookFeel(){
+		c = this.getContentPane();
+		b = new JButton("JButton");
+		cb = new JCheckBox("J ChecckBox");
+		t = new JTextField("TextField",15);
+		r1 = new JRadioButton("Metal");
+		r2 = new JRadioButton("Motif");
+		r3 = new JRadioButton("Windows");
+		bg = new ButtonGroup();
+		bg.add(r1);
+		bg.add(r2);
+		bg.add(r3);
+		
+		b.setBounds(100,50,75,40);
+		cb.setBounds(100,100,100,40);
+		t.setBounds(100,150,100,40);
+		r1.setBounds(50,250,100,30);
+		r2.setBounds(150,250,100,30);
+		r3.setBounds(250,250,100,30);
+		
+		c.add(b);
+		c.add(cb);
+		c.add(t);
+		c.add(r1);
+		c.add(r2);
+		c.add(r3);
+		
+		r1.addItemListener(this);
+		r2.addItemListener(this);
+		r3.addItemListener(this);
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public static void main(String[] args) {
+		LookFeel lf = new LookFeel();
+		lf.setSize(600,500);
+		lf.setTitle("Look And Fee");
+		lf.setVisible(true);
+
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent ie) {
+		try{
+			if(r1.getModel().isSelected())
+				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			if(r2.getModel().isSelected())
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+			if(r3.getModel().isSelected())
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			SwingUtilities.updateComponentTreeUI(c);
+		}catch(Exception e){
+			
+		}
+		
+	}
+
+}
